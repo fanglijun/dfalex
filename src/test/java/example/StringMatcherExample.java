@@ -11,7 +11,7 @@ public class StringMatcherExample extends TestBase {
             DfaBuilder<Integer> builder = new DfaBuilder<>();
             builder.addPattern(Pattern.matchI("法轮功"), 1);
             builder.addPattern(Pattern.matchI("法轮大法好"), 2);
-            dfa = builder.build(null);
+            dfa = builder.build((DfaAmbiguityResolver<Integer>) integers -> integers.iterator().next());
         }
         StringMatcher matcher = new StringMatcher("中国禁止修炼法轮功之后就没有人说法轮大法好了");
         Integer result = matcher.findNext(dfa);
